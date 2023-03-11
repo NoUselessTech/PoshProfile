@@ -7,14 +7,13 @@ Function Prompt {
     $CurrentPath = "$($CwdArray[$CwdLength-2])\$($CwdArray[$CwdLength-1])"
     $GitBranch = try { 
         $Branch = Invoke-Expression "git branch" -ErrorAction Stop
-        Write-Host $Branch
         $Branch.substring(2, $Branch.length-2)
     } catch { $Null }
     
     $GitStatus = try { 
         $Status = Invoke-Expression "git status -s" -ErrorAction Stop
         if ($Null -ne $Status) {
-            "Unpushed changes."
+            "Uncommitted changes."
         } else {
             "Up to date."
         }
