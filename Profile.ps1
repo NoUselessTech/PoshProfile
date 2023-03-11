@@ -5,6 +5,7 @@ Function Prompt {
     $CwdLength = $CwdArray.Count
     $Disk = $CwdArray[0]
     $CurrentPath = "$($CwdArray[$CwdLength-2])\$($CwdArray[$CwdLength-1])"
+    $GitBranch = try { Invoke-Command "git branch" -ErrorAction Stop } catch { $Null }
     Write-Host -NoNewLine -ForeGroundColor White -BackGroundColor Red " PS: $PSVersion "
     Write-Host -NoNewLine -ForeGroundColor Black -BackGroundColor DarkCyan " $(Get-Date -Format("yyyy-MM-dd hh:mm:ss.fff")) "
     Write-Host -ForeGroundColor Black -BackGroundColor DarkGreen " $($Disk) $($CurrentPath) "
